@@ -1,5 +1,5 @@
 import classes from './MealItem.module.css';
-
+import MealItemForm from './MealItemForm';
 
 const MealItem = (props) => {
     // proper way to render price; toFixed(2) will always display to decimal places ex $12.99
@@ -13,7 +13,7 @@ const MealItem = (props) => {
                 <div className={classes.price}>{price}</div>
             </div>
             <div>
-                
+                <MealItemForm />
             </div>
         </li>
     );
