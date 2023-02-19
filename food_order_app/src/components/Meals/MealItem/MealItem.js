@@ -1,9 +1,23 @@
 import classes from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
+import { useContext } from 'react';
+import CartContext from '../../../store/cart-context';
+import Cart from '../../Cart/Cart';
+
 
 const MealItem = (props) => {
+    const cartCtx = useContext(CartContext);
     // proper way to render price; toFixed(2) will always display to decimal places ex $12.99
     const price = `$${props.price.toFixed(2)}`;
+
+    const addToCartHandler = (amount) => {
+        cartCtx.addItem({
+            id: props.id,
+            name: props.name,
+            amount: amount,
+            price: props.price
+        });
+    };
 
     return (
         <li className={classes.meal}>
@@ -13,7 +27,7 @@ const MealItem = (props) => {
                 <div className={classes.price}>{price}</div>
             </div>
             <div>
-                <MealItemForm />
+                <MealItemForm onAddToCart={addToCartHandler}/>
             </div>
         </li>
     );
